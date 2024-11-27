@@ -1,31 +1,42 @@
 <template>
   <div class="container">
-    <div class="log">
-      <p @click="logs = []">收发记录</p>
-      <span v-for="item in logs">
-        <span style="padding-right: 8px; color: #333">{{ item.time }}</span>
-        <span style="padding-right: 8px; color: #333">{{
-          typeMap.get(item.type)
-        }}</span>
-        <div style="word-break: break-all; white-space: pre-wrap">
-          {{ item.data }}
-        </div>
-      </span>
+    <div class="log" :style="`width: ${logWidth};`">
+      <div style="padding: 12px">
+        <p @click="logs = []">收发记录</p>
+        <span v-for="item in logs">
+          <span style="padding-right: 8px; color: #333">{{ item.time }}</span>
+          <span style="padding-right: 8px; color: #333">{{
+            typeMap.get(item.type)
+          }}</span>
+          <div style="word-break: break-all; white-space: pre-wrap">
+            {{ item.data }}
+          </div>
+        </span>
+      </div>
     </div>
-    <div>
+    <div style="display: flex; flex-direction: column; flex: 1">
       <div class="work">
         <t-input
           v-model="config.url"
           clearable
           placeholder="请输入需要嵌入的页面"
         />
-        <t-textarea
-          v-model="config.message"
-          clearable
-          placeholder="请输入需要发送的参数（对象为JSON格式）"
-          :autosize="{ minRows: 3, maxRows: 3 }"
-          style="margin: 12px 0"
-        />
+        <div style="display: flex; align-items: center">
+          <t-textarea
+            v-model="config.message"
+            clearable
+            placeholder="请输入需要发送的参数（对象为JSON格式）"
+            :autosize="{ minRows: 1, maxRows: 3 }"
+            style="margin: 12px 0"
+          />
+          <div style="display: flex; align-items: center">
+            <span
+              style="white-space: nowrap; padding: 0 0 0 20px; font-size: 14px"
+              >展示收发记录：</span
+            >
+            <t-switch v-model="config.logVisible"></t-switch>
+          </div>
+        </div>
         <div class="flex align-center justify-between">
           <t-button @click="sendMessage">发送</t-button>
 
@@ -53,7 +64,7 @@
 
 <script setup>
   import { MessagePlugin } from "tdesign-vue-next";
-  import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+  import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
   import dayjs from "dayjs";
 
   const typeMap = new Map([
@@ -61,10 +72,15 @@
     ["recive", "接收到嵌套网站消息："],
   ]);
 
+  const logWidth = computed(() => {
+    return config.value.logVisible ? "200px" : "0px";
+  });
+
   const config = ref({
     url: "",
     message: "",
     iframeWidth: "100%",
+    logVisible: false,
   });
 
   watch(
@@ -129,8 +145,7 @@
     align-items: stretch;
 
     .work {
-      width: 85vw;
-      height: 20vh;
+      width: 100%;
       border-left: 1px solid #ddd;
       padding: 12px;
       box-sizing: border-box;
@@ -138,17 +153,17 @@
 
     .iframe {
       background-color: #fff;
-      width: 85vw;
-      height: 80vh;
+      width: 100%;
+      flex: 1;
       // border: 1px solid #ddd;
     }
 
     .log {
-      flex: 1;
-      padding: 12px;
       box-sizing: border-box;
       font-size: 14px;
+      overflow-x: hidden;
       overflow-y: auto;
+      transition: all 0.3s;
     }
   }
 </style>
