@@ -29,25 +29,24 @@
             :autosize="{ minRows: 1, maxRows: 3 }"
             style="margin: 12px 0"
           />
+          <div class="flex align-center justify-between">
+            <t-button @click="sendMessage" style="margin: 0 12px;">发送</t-button>
+            <t-select
+              style="width: 100px"
+              v-model="config.iframeWidth"
+              @change="reload"
+            >
+              <t-option key="1" label="PC视图" value="100%" />
+              <t-option key="2" label="H5视图" value="600px" />
+            </t-select>
+          </div>
           <div style="display: flex; align-items: center">
             <span
-              style="white-space: nowrap; padding: 0 0 0 20px; font-size: 14px"
-              >展示收发记录：</span
+              style="white-space: nowrap; padding: 0 12px 0 20px; font-size: 14px"
+              >日志</span
             >
             <t-switch v-model="config.logVisible"></t-switch>
           </div>
-        </div>
-        <div class="flex align-center justify-between">
-          <t-button @click="sendMessage">发送</t-button>
-
-          <t-select
-            style="width: 200px"
-            v-model="config.iframeWidth"
-            @change="reload"
-          >
-            <t-option key="1" label="PC视图" value="100%" />
-            <t-option key="2" label="H5视图" value="600px" />
-          </t-select>
         </div>
       </div>
       <div class="iframe">
