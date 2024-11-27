@@ -1,8 +1,8 @@
 // src/router/index.ts
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 // 配置路由
-const routes = [
+const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: 'iframe'

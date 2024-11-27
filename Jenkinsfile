@@ -6,22 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Check Node Version') {
-    steps {
-        script {
-            sh 'node -v'
-        }
-    }
-}
-
-
-        stage('Checkout') {
-            steps {
-                // 拉取代码
-                checkout scm
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 // 安装依赖

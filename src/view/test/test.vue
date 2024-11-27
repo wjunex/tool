@@ -3,7 +3,7 @@
     <div class="w-item">
       <div class="left">测试</div>
       <div class="center">
-        <div class="item" v-for="(item, index) in [1, 2, 3]" :key="index">
+        <div class="item" v-for="(_, index) in [1, 2, 3]" :key="index">
           <div>测试</div>
           <div>测试</div>
         </div>

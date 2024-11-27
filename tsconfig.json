@@ -1,4 +1,15 @@
 {
+  "compilerOptions": {
+    "target": "ESNext",                   // 编译为最新的 JavaScript
+    "module": "ESNext",                   // 使用 ES 模块
+    "moduleResolution": "node",           // 使用 Node 模块解析方式
+    "strict": true,                       // 启用严格模式
+    "allowJs": true,                      // 允许 JavaScript 文件
+    "baseUrl": ".",                       // 基本路径
+    "paths": {
+      "@/*": ["src/*"]                    // 将 '@' 映射到 'src' 目录
+    }
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
