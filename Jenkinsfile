@@ -1,12 +1,20 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_HOME = tool name: 'NodeJS', type: 'NodeJS'  // 你需要在 Jenkins 中设置 NodeJS 环境
-        PATH = "${NODE_HOME}/bin:${env.PATH}"
+    tools {
+        nodejs 'NodeJS 16.x' // 'NodeJS' 
     }
 
     stages {
+        stage('Check Node Version') {
+    steps {
+        script {
+            sh 'node -v'
+        }
+    }
+}
+
+
         stage('Checkout') {
             steps {
                 // 拉取代码
