@@ -29,7 +29,7 @@ pipeline {
                 // 部署到目标服务器
                 script {
                     // 假设你要将构建后的应用复制到远程服务器
-                    sh 'scp -r dist/* user@your-server:/path/to/your/site'
+                    sh 'scp -r dist/* root@47.109.69.204:/var/www/bottle-tool'
                 }
             }
         }
