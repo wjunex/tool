@@ -5,7 +5,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: 'index'
+    redirect: '/index'
   },
   {
     path: '/index',
