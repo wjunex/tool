@@ -5,7 +5,12 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: 'iframe'
+    redirect: 'index'
+  },
+  {
+    path: '/index',
+    name: 'Index',
+    component: () => import('@/view/index/index.vue'),
   },
   {
     path: '/iframe',
