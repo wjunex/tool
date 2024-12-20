@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <header>
-      <h1>欢迎来到我的网站</h1>
+      <h1>欢迎来到本站</h1>
     </header>
     <main>
       <section>
-        <h2>备案说明</h2>
-        <p>本网站正在进行备案，备案号将在完成后添加。</p>
+        <h2>网站说明</h2>
+        <p>本站正在建设中，将会用于技术分享。</p>
       </section>
       <section>
         <h3>联系方式</h3>
@@ -14,14 +14,23 @@
       </section>
     </main>
     <footer>
-      <p>© 2024 我的个人网站 | 备案号：xxxxxx</p>
+      <p>
+        © 2024 昔我往矣 杨柳依依 |
+        <span class="button" @click="openUrl('https://beian.miit.gov.cn/')"
+          >黔ICP备2024042286号</span
+        >
+      </p>
     </footer>
   </div>
 </template>
 
-<script></script>
+<script setup>
+  const openUrl = (url) => {
+    window.open(url);
+  };
+</script>
 
-<style scoped>
+<style scoped lang="scss">
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     margin: 0;
@@ -40,12 +49,6 @@
     padding: 20px;
   }
 
-  h1,
-  h2,
-  h3 {
-    /* color: #333; */
-  }
-
   footer {
     background-color: #2c3e50;
     color: #fff;
@@ -54,5 +57,12 @@
     position: fixed;
     width: 100%;
     bottom: 0;
+  }
+
+  .button {
+    cursor: pointer;
+    &:active {
+      opacity: 0.7;
+    }
   }
 </style>
